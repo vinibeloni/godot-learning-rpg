@@ -500,8 +500,10 @@ __meta__ = {
 }
 
 [node name="Background" type="TextureRect" parent="."]
-margin_right = 320.0
-margin_bottom = 180.0
+margin_left = -185.0
+margin_top = -163.0
+margin_right = 531.0
+margin_bottom = 352.0
 texture = ExtResource( 3 )
 stretch_mode = 2
 
@@ -516,12 +518,21 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -131064, 0, 0, -131063, 0, 1, -131062, 0, 2, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 2, -65528, 0, 131072, -65527, 0, 65544, -65526, 0, 131074, 65535, 0, 131072, 0, 0, 131073, 1, 0, 131073, 2, 0, 131074, 9, 0, 131075, 196611, 0, 0, 196612, 0, 2, 196617, 0, 0, 196618, 0, 5, 196619, 0, 196610, 262147, 0, 65536, 262148, 0, 65538, 262152, 0, 196608, 262153, 0, 196617, 262154, 0, 131074, 327680, 0, 0, 327681, 0, 1, 327682, 0, 1, 327683, 0, 131078, 327684, 0, 65538, 327689, 0, 131075, 393216, 0, 131072, 393217, 0, 131073, 393218, 0, 131073, 393219, 0, 131073, 393220, 0, 131074 )
+tile_data = PoolIntArray( -131064, 0, 0, -131063, 0, 1, -131062, 0, 2, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 5, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196614, -65527, 0, 65544, -65526, 0, 196613, -65525, 0, 7, 65534, 0, 4, 65535, 0, 196614, 0, 0, 131073, 1, 0, 131073, 2, 0, 131074, 9, 0, 131075, 11, 0, 65539, 131070, 0, 65539, 65547, 0, 65539, 196606, 0, 196612, 196607, 0, 7, 131083, 0, 65539, 262143, 0, 65539, 196611, 0, 0, 196612, 0, 2, 196617, 0, 0, 196618, 0, 5, 196619, 0, 196615, 327679, 0, 65539, 262147, 0, 65536, 262148, 0, 65538, 262152, 0, 196608, 262153, 0, 196617, 262154, 0, 131074, 393215, 0, 131076, 327680, 0, 1, 327681, 0, 1, 327682, 0, 1, 327683, 0, 131078, 327684, 0, 65538, 327689, 0, 65539, 458751, 0, 131072, 393216, 0, 131073, 393217, 0, 131073, 393218, 0, 131073, 393219, 0, 131073, 393220, 0, 196613, 393221, 0, 196609, 393222, 0, 196609, 393223, 0, 196609, 393224, 0, 196609, 393225, 0, 196615 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 200, 100 )
+current = true
+zoom = Vector2( 1.3, 1.3 )
+smoothing_enabled = true
 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 120, 56 )
+position = Vector2( 200, 100 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -565,19 +576,7 @@ position = Vector2( 219, 145 )
 [node name="Bat2" parent="YSort/Bats" instance=ExtResource( 7 )]
 position = Vector2( 269, 71 )
 
-[node name="Bat3" parent="YSort/Bats" instance=ExtResource( 7 )]
-position = Vector2( 71, 71 )
-
 [node name="Bat4" parent="YSort/Bats" instance=ExtResource( 7 )]
-position = Vector2( 186, 29 )
-
-[node name="Bat5" parent="YSort/Bats" instance=ExtResource( 7 )]
-position = Vector2( 186, 29 )
-
-[node name="Bat6" parent="YSort/Bats" instance=ExtResource( 7 )]
-position = Vector2( 186, 29 )
-
-[node name="Bat7" parent="YSort/Bats" instance=ExtResource( 7 )]
 position = Vector2( 186, 29 )
 
 [node name="Trees" type="YSort" parent="YSort"]
@@ -591,8 +590,10 @@ position = Vector2( 20, 146 )
 [node name="Tree3" parent="YSort/Trees" instance=ExtResource( 9 )]
 position = Vector2( 310, 112 )
 
-[node name="HealthUI" parent="." instance=ExtResource( 8 )]
-margin_left = 8.0
-margin_top = 5.0
-margin_right = 108.0
-margin_bottom = 18.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 106.0
+margin_bottom = 17.0

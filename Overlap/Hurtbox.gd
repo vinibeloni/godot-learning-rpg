@@ -20,7 +20,7 @@ func start_invincibility(duration):
   self.invincible = true
   timer.start(duration)
 
-func createa_hit_effect():
+func create_hit_effect():
   var effect = HitEffect.instance()
   effect.global_position = global_position
 
