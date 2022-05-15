@@ -8,6 +8,6 @@ func create_effect():
   
   get_parent().add_child(effect)
 
-func _on_Hurtbox_area_entered():
+func _on_Hurtbox_area_entered(_area):
   create_effect()
   queue_free()
