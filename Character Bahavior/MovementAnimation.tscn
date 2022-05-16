@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Character Bahavior/MovementAnimation.gd" type="Script" id=1]
+
+[node name="MovementAnimation" type="Node"]
+script = ExtResource( 1 )

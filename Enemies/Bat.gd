@@ -36,7 +36,7 @@ func _physics_process(delta):
   
   match state:
     State.IDLE:
-      velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+      velocity = velocity.move_toward(Vector2.ZERO, ACCELERATION * delta)
       seek_player()
       check_for_new_state()
    
