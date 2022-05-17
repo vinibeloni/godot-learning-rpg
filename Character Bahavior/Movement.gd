@@ -7,9 +7,8 @@ var FRICTION = 0
 var ROLL_SPEED = 0
 var ROLL_FRICTION = 0
 
-var _velocity = Vector2.ZERO
-var _input = Vector2.ZERO
 var looking_position = Vector2.DOWN
+var _velocity = Vector2.ZERO
 
 var player = null
 
@@ -37,20 +36,11 @@ func reset_velocity():
 func move_player():
   _velocity = player.move_and_slide(_velocity)
 
-func set_input(input):
-  _input = input
+func apply_run_acceleration(input, delta):
+  _move_toward(input * MAX_SPEED, ACCELERATION * delta)
 
-func get_looking_position():
-  _input = Vector2.ZERO
-  _input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-  _input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-  return _input.normalized()
-
-func apply_player_acceleration(delta):
-  _set_velocity(_input * MAX_SPEED, ACCELERATION * delta)
-
-func apply_player_friction(delta):
-  _set_velocity(Vector2.ZERO, FRICTION * delta)
+func apply_run_friction(delta):
+  _move_toward(Vector2.ZERO, FRICTION * delta)
   
-func _set_velocity(to, delta):
+func _move_toward(to, delta):
   _velocity = _velocity.move_toward(to, delta)

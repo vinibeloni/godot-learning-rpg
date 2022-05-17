@@ -8,9 +8,6 @@ enum State {
   ATTACK
 }
 
-var state = State.MOVE
-var stats = PlayerStats
-
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 onready var blinkAnimation = $BlinkAnimation
@@ -18,13 +15,16 @@ onready var blinkAnimation = $BlinkAnimation
 onready var movement = $Movement
 onready var animation = $MovementAnimation
 
+var state = State.MOVE
+var stats = PlayerStats
+
 func _ready():
   randomize()
   stats.connect("no_health", self, "queue_free")
   
   swordHitbox.knockbackVector = movement.looking_position
   
-  movement.setup(self, 500, 100, 500, 120)
+  movement.setup(500, 100, 500, 120)
   animation.setup($AnimationTree)
 
 func _physics_process(delta):
@@ -37,7 +37,7 @@ func _physics_process(delta):
       _attack_state()
   
 func _move_state(delta):
-  var input = movement.get_looking_position()
+  var input = _get_user_input()
   
   if input == Vector2.ZERO:
     _stop_moving(delta)
@@ -47,6 +47,12 @@ func _move_state(delta):
   movement.move_player()
   
   _check_new_state()
+  
+func _get_user_input():
+  var input = Vector2.ZERO
+  input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+  input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+  return input.normalized()
 
 func _move_to(input, delta):
   movement.looking_position = input
@@ -55,11 +61,11 @@ func _move_to(input, delta):
   animation.set_animations_position(input)
   
   animation.run()
-  movement.apply_player_acceleration(delta)
+  movement.apply_run_acceleration(input, delta)
 
 func _stop_moving(delta):
   animation.idle()
-  movement.apply_player_friction(delta)
+  movement.apply_run_friction(delta)
 
 func _check_new_state():
   if Input.is_action_just_pressed("roll"):
