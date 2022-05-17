@@ -877,6 +877,7 @@ shape = SubResource( 49 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -15.0
 
 [node name="BlinkAnimation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 53 )

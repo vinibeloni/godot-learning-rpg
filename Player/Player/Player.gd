@@ -24,7 +24,7 @@ func _ready():
   
   swordHitbox.knockbackVector = movement.looking_position
   
-  movement.setup(500, 100, 500, 120)
+  movement.setup(self, 500, 100, 500, 120)
   animation.setup($AnimationTree)
 
 func _physics_process(delta):
