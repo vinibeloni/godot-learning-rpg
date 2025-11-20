@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://1x0fv0pv2yjy"]
+[gd_scene load_steps=12 format=4 uid="uid://1x0fv0pv2yjy"]
 
 [ext_resource type="PackedScene" uid="uid://cgfx2e30q58cc" path="res://player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dr0jti78njvg1" path="res://world/grass_background.png" id="1_fj7yv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbwdejhw15mwv" path="res://world/bush.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://c2bqrynnavax1" path="res://world/tree.tscn" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://xinq46gxfc0f" path="res://world/dirt_tileset.png" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://cf3fawyaidgf0" path="res://world/grass.tscn" id="7_pkg7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("5_036b0")
@@ -786,3 +787,20 @@ position = Vector2(120, 144)
 
 [node name="Tree2" parent="Trees" instance=ExtResource("4_aqk2v")]
 position = Vector2(280, 104)
+
+[node name="Grass" type="Node2D" parent="."]
+
+[node name="Grass" parent="Grass" instance=ExtResource("7_pkg7o")]
+position = Vector2(120, 40)
+
+[node name="Grass2" parent="Grass" instance=ExtResource("7_pkg7o")]
+position = Vector2(104, 40)
+
+[node name="Grass2" parent="Grass/Grass2" instance=ExtResource("7_pkg7o")]
+position = Vector2(-64, 64)
+
+[node name="Grass3" parent="Grass" instance=ExtResource("7_pkg7o")]
+position = Vector2(40, 120)
+
+[node name="Grass4" parent="Grass" instance=ExtResource("7_pkg7o")]
+position = Vector2(40, 136)
