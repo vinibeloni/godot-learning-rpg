@@ -1,3 +1,12 @@
+# Processo de criação
+# Cria todos os sprites + animação
+# Adiciona state machine para o animation tree
+# Corrige Motion Mode para Floating
+# Busca player no grupo global "player" para evitar fazer manualmente
+# Faz o Bat olhar para o player e se estiver dentro do rage muda o state para Chase
+# Para mudar para Chase precisa alterar de Idle -> Chase via Expression
+# Configure o RayCast e Layers para buscar o Player
+
 class_name Bat extends CharacterBody2D
 
 const RANGE: = 80
