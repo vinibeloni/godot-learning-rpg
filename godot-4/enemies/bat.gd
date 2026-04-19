@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 			if player is Player:
 				var direction = global_position.direction_to(player.global_position)
 				velocity = direction * SPEED
+				sprite.scale.x = sign(velocity.x) # normaliza para 1, -1 ou 0
 			else:
 				velocity = Vector2.ZERO
 			move_and_slide()
