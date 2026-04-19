@@ -56,8 +56,12 @@ animation = &"fly"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6wbh"]
+advance_mode = 2
+advance_expression = "is_player_in_range()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ry5r7"]
+advance_mode = 2
+advance_expression = "not is_player_in_range()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_55rq4"]
 states/Chase/node = SubResource("AnimationNodeAnimation_6e148")
@@ -94,4 +98,5 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_w0m5b")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")

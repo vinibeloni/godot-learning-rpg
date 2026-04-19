@@ -519,7 +519,7 @@ states/StateMachine/node = SubResource("AnimationNodeStateMachine_2ieo8")
 states/StateMachine/position = Vector2(388, 98.888885)
 transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTransition_ebec5")]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_rkbax")
 
