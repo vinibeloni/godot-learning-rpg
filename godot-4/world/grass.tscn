@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf3fawyaidgf0"]
+[gd_scene load_steps=5 format=3 uid="uid://cf3fawyaidgf0"]
 
 [ext_resource type="Script" uid="uid://diybselfrg8fx" path="res://world/grass.gd" id="1_6gvtj"]
 [ext_resource type="Texture2D" uid="uid://d1386ui2isj6r" path="res://world/grass.png" id="1_44d1o"]
+[ext_resource type="PackedScene" uid="uid://cw813o111ed53" path="res://effects/grass_effect.tscn" id="2_aervy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44d1o"]
 size = Vector2(13, 14)
 
 [node name="Grass" type="Node2D"]
 script = ExtResource("1_6gvtj")
+GrassEffect = ExtResource("2_aervy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_44d1o")

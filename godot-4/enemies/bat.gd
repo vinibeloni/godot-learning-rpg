@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Bat extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_tree: AnimationTree = $AnimationTree

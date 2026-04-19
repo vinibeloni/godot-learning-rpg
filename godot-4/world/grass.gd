@@ -1,6 +1,6 @@
 extends Node2D
 
-const GrassEffect = preload("res://effects/grass_effect.tscn")
+@export var GrassEffect: PackedScene
 
 @onready var area_2d: Area2D = $Area2D
 
