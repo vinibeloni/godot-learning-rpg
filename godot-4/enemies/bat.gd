@@ -10,7 +10,7 @@
 class_name Bat extends CharacterBody2D
 
 const RANGE: = 80
-const SPEED: = 50
+const SPEED: = 30
 const FRICTION = 500
 
 @onready var sprite: Sprite2D = $Sprite
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func take_hit(hitbox: Hitbox):
-	velocity = hitbox.knockback_direction * 100
+	velocity = hitbox.hit()
 	playback.start("HitState")
 
 func get_player() -> Player:

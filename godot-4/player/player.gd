@@ -8,7 +8,6 @@ var last_input_vector: = Vector2.ZERO
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
-@onready var hitbox: Hitbox = $Hitbox
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -21,7 +20,6 @@ func _physics_process(delta: float) -> void:
 
 func _move_state(delta: float) -> void:
 	if input_vector != Vector2.ZERO:
-		hitbox.knockback_direction = input_vector
 		last_input_vector = input_vector
 		_animate()
 
