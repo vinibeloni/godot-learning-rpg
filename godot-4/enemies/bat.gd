@@ -16,6 +16,12 @@ const SPEED: = 50
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var hurtbox: Hurtbox = $Hurtbox
+
+func _ready() -> void:
+	hurtbox.hurt.connect(func(hitbox: Hitbox):
+		queue_free()
+	)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()

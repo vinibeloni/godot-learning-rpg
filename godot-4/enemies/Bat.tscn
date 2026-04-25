@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo8jiwpllghfs"]
+[gd_scene load_steps=17 format=3 uid="uid://bo8jiwpllghfs"]
 
 [ext_resource type="Texture2D" uid="uid://cf3l5g2epld7h" path="res://enemies/bat.png" id="1_6e148"]
 [ext_resource type="Script" uid="uid://dedi7027eumw0" path="res://enemies/bat.gd" id="1_ng1ub"]
 [ext_resource type="Texture2D" uid="uid://bsjtfmegtg4rh" path="res://shadows/small_shadow.png" id="2_ng1ub"]
+[ext_resource type="Script" uid="uid://dq4v35ww63efl" path="res://damage_boxes/hurtbox.gd" id="4_pbl8b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl6vp"]
-radius = 6.0827627
+radius = 4.0
 
 [sub_resource type="Animation" id="Animation_ng1ub"]
 length = 0.001
@@ -76,6 +77,9 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_55rq4")
 nodes/StateMachine/position = Vector2(-53.333332, 80)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6wbh"]
+radius = 5.0990195
+
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
@@ -83,6 +87,7 @@ motion_mode = 1
 script = ExtResource("1_ng1ub")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
 texture = ExtResource("1_6e148")
 offset = Vector2(0, -8)
 hframes = 5
@@ -91,7 +96,7 @@ hframes = 5
 texture = ExtResource("2_ng1ub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_dl6vp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -105,3 +110,13 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("4_pbl8b")
+metadata/_custom_type_script = "uid://dq4v35ww63efl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_p6wbh")
