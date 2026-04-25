@@ -22,6 +22,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
 [sub_resource type="Animation" id="Animation_6e148"]
 resource_name = "fly"
@@ -56,6 +80,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbl8b"]
@@ -99,7 +147,6 @@ states/IdleState/position = Vector2(461.33334, 101.55554)
 transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTransition_pbl8b"), "IdleState", "ChaseState", SubResource("AnimationNodeStateMachineTransition_p6wbh"), "ChaseState", "IdleState", SubResource("AnimationNodeStateMachineTransition_ry5r7"), "HitState", "IdleState", SubResource("AnimationNodeStateMachineTransition_55rq4")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w0m5b"]
-graph_offset = Vector2(-146.53267, -44.45772)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_55rq4")
 nodes/StateMachine/position = Vector2(-53.333332, 80)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -109,7 +156,7 @@ radius = 5.0990195
 
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_ng1ub")
 
