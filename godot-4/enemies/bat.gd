@@ -15,6 +15,7 @@ const SPEED: = 50
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -41,3 +42,13 @@ func is_player_in_range() -> bool:
 		result = distance < RANGE
 		
 	return result
+
+# utilizado no AnimationTree
+func can_see_player() -> bool:
+	if not is_player_in_range(): return false
+	
+	var player := get_player()
+	# target seria a ponta do ray cast, por isso deve calcular a diferença
+	ray_cast_2d.target_position = player.global_position - global_position # diferença entre o player e bat
+	var vision_is_blocked = ray_cast_2d.is_colliding()
+	return not vision_is_blocked

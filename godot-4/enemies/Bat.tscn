@@ -7,6 +7,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl6vp"]
 radius = 6.0827627
 
+[sub_resource type="Animation" id="Animation_ng1ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_6e148"]
 resource_name = "fly"
 length = 0.5
@@ -23,21 +38,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_ng1ub"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbl8b"]
@@ -57,11 +57,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6wbh"]
 advance_mode = 2
-advance_expression = "is_player_in_range()"
+advance_expression = "can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ry5r7"]
 advance_mode = 2
-advance_expression = "not is_player_in_range()"
+advance_expression = "not can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_55rq4"]
 states/Chase/node = SubResource("AnimationNodeAnimation_6e148")
@@ -71,12 +71,14 @@ states/Idle/position = Vector2(461.33334, 101.55554)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_pbl8b"), "Idle", "Chase", SubResource("AnimationNodeStateMachineTransition_p6wbh"), "Chase", "Idle", SubResource("AnimationNodeStateMachineTransition_ry5r7")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w0m5b"]
-graph_offset = Vector2(-229.48425, -9.929807)
+graph_offset = Vector2(-146.53267, -44.45772)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_55rq4")
 nodes/StateMachine/position = Vector2(-53.333332, 80)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="Bat" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_ng1ub")
 
@@ -101,3 +103,5 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_w0m5b")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
