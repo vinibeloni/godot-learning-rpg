@@ -11,6 +11,7 @@ class_name Bat extends CharacterBody2D
 
 const RANGE: = 80
 const SPEED: = 50
+const FRICTION = 500
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -19,15 +20,13 @@ const SPEED: = 50
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 func _ready() -> void:
-	hurtbox.hurt.connect(func(hitbox: Hitbox):
-		queue_free()
-	)
+	hurtbox.hurt.connect(take_hit.call_deferred)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
 	match state: 
-		"Idle": pass
-		"Chase":
+		"IdleState": pass
+		"ChaseState":
 			var player = get_player()
 			if player is Player:
 				var direction = global_position.direction_to(player.global_position)
@@ -36,6 +35,13 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity = Vector2.ZERO
 			move_and_slide()
+		"HitState":
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+			move_and_slide()
+
+func take_hit(hitbox: Hitbox):
+	velocity = hitbox.knockback_direction * 100
+	playback.start("HitState")
 
 func get_player() -> Player:
 	return get_tree().get_first_node_in_group("player")
