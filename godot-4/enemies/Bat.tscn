@@ -1,9 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo8jiwpllghfs"]
+[gd_scene load_steps=22 format=3 uid="uid://bo8jiwpllghfs"]
 
 [ext_resource type="Texture2D" uid="uid://cf3l5g2epld7h" path="res://enemies/bat.png" id="1_6e148"]
 [ext_resource type="Script" uid="uid://dedi7027eumw0" path="res://enemies/bat.gd" id="1_ng1ub"]
 [ext_resource type="Texture2D" uid="uid://bsjtfmegtg4rh" path="res://shadows/small_shadow.png" id="2_ng1ub"]
+[ext_resource type="Script" uid="uid://bykm4u41cvhha" path="res://stats.gd" id="2_p6wbh"]
 [ext_resource type="Script" uid="uid://dq4v35ww63efl" path="res://damage_boxes/hurtbox.gd" id="4_pbl8b"]
+
+[sub_resource type="Resource" id="Resource_ry5r7"]
+script = ExtResource("2_p6wbh")
+health = 3
+max_health = 3
+metadata/_custom_type_script = "uid://bykm4u41cvhha"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl6vp"]
 radius = 4.0
@@ -159,6 +166,7 @@ collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_ng1ub")
+stats = SubResource("Resource_ry5r7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(1, 0)

@@ -9,9 +9,11 @@
 
 class_name Bat extends CharacterBody2D
 
-const RANGE: = 80
+const RANGE: = 120
 const SPEED: = 30
 const FRICTION = 500
+
+@export var stats: Stats
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -20,7 +22,9 @@ const FRICTION = 500
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 func _ready() -> void:
+	stats = stats.duplicate() # Resources são compartilhados, assim como Sprites
 	hurtbox.hurt.connect(take_hit.call_deferred)
+	stats.no_health.connect(queue_free)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -40,6 +44,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func take_hit(hitbox: Hitbox):
+	stats.health -= hitbox.damage
 	velocity = hitbox.hit()
 	playback.start("HitState")
 
