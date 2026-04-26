@@ -16,6 +16,7 @@ var last_input_vector: = Vector2.DOWN
 func _ready() -> void:
 	hurtbox.hurt.connect(_take_hit.call_deferred)
 	stats.no_health.connect(_die)
+	_animate() # não estava assim no tutorial original
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -45,7 +46,7 @@ func _roll_state(delta: float) -> void:
 	move_and_slide()
 
 func _animate():
-	var fixed_input = Vector2(input_vector.x, -input_vector.y)
+	var fixed_input = Vector2(last_input_vector.x, -last_input_vector.y)
 	animation_tree.set("parameters/StateMachine/AttackState/blend_position", fixed_input)
 	animation_tree.set("parameters/StateMachine/RollState/blend_position", fixed_input)
 	animation_tree.set("parameters/StateMachine/MoveState/RunState/blend_position", fixed_input)

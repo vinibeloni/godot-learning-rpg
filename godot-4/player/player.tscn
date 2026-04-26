@@ -587,9 +587,9 @@ advance_expression = "input_vector.length() == 0.0"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rgyib"]
 states/RunState/node = SubResource("AnimationNodeBlendSpace2D_g1dw6")
-states/RunState/position = Vector2(365.33334, 171.33333)
+states/RunState/position = Vector2(365.33334, 216.33333)
 states/StandState/node = SubResource("AnimationNodeBlendSpace2D_yw30f")
-states/StandState/position = Vector2(372, 71.333336)
+states/StandState/position = Vector2(365.33334, 100)
 transitions = ["Start", "StandState", SubResource("AnimationNodeStateMachineTransition_qjkh3"), "StandState", "RunState", SubResource("AnimationNodeStateMachineTransition_g6k8r"), "RunState", "StandState", SubResource("AnimationNodeStateMachineTransition_boad6")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
@@ -634,7 +634,7 @@ advance_mode = 2
 states/AttackState/node = SubResource("AnimationNodeBlendSpace2D_rkbax")
 states/AttackState/position = Vector2(347.7039, 208.66667)
 states/MoveState/node = SubResource("AnimationNodeStateMachine_rgyib")
-states/MoveState/position = Vector2(349.33337, 100.666664)
+states/MoveState/position = Vector2(346.2224, 100)
 states/RollState/node = SubResource("AnimationNodeBlendSpace2D_hg6s5")
 states/RollState/position = Vector2(347.8519, 1.703723)
 transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTransition_8t03j"), "MoveState", "RollState", SubResource("AnimationNodeStateMachineTransition_rkbax"), "MoveState", "AttackState", SubResource("AnimationNodeStateMachineTransition_g1dw6"), "RollState", "MoveState", SubResource("AnimationNodeStateMachineTransition_yw30f"), "AttackState", "MoveState", SubResource("AnimationNodeStateMachineTransition_rgyib")]
@@ -736,7 +736,7 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/AttackState/blend_position = Vector2(0, 0)
 parameters/StateMachine/MoveState/RunState/blend_position = Vector2(0, 0)
-parameters/StateMachine/MoveState/StandState/blend_position = Vector2(0, -0.018072248)
+parameters/StateMachine/MoveState/StandState/blend_position = Vector2(0, 0)
 parameters/StateMachine/RollState/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2031643913]
