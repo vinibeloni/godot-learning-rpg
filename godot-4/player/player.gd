@@ -15,6 +15,7 @@ var last_input_vector: = Vector2.ZERO
 
 func _ready() -> void:
 	hurtbox.hurt.connect(_take_hit.call_deferred)
+	stats.no_health.connect(_die)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -53,4 +54,8 @@ func _animate():
 func _take_hit(other_hitbox: Hitbox):
 	stats.health -= other_hitbox.damage
 	blink_animation_player.play("hit")
-	
+
+func _die() -> void:
+	hide()
+	remove_from_group("player")
+	process_mode = Node.PROCESS_MODE_DISABLED
