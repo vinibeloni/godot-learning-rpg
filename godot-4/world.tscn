@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cgfx2e30q58cc" path="res://player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dr0jti78njvg1" path="res://world/grass_background.png" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://ckbvmidh173w2" path="res://ui/hearts_ui.tscn" id="1_ioo17"]
+[ext_resource type="Resource" uid="uid://bnq0qbvcevm1n" path="res://player/player_stats.tres" id="2_wse8f"]
 [ext_resource type="Texture2D" uid="uid://d0w7g1nnxb3y7" path="res://world/cliff_tileset.png" id="3_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dbwdejhw15mwv" path="res://world/bush.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://c2bqrynnavax1" path="res://world/tree.tscn" id="4_aqk2v"]
@@ -737,6 +739,15 @@ sources/0 = SubResource("TileSetAtlasSource_pkg7o")
 
 [node name="World" type="Node2D" unique_id=1253732652]
 y_sort_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2079954993]
+
+[node name="HeartsUI" parent="UI" unique_id=1565384325 instance=ExtResource("1_ioo17")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 24.0
+player_stats = ExtResource("2_wse8f")
 
 [node name="Ground" type="Node2D" parent="." unique_id=1914370061]
 z_index = -1000

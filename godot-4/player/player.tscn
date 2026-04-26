@@ -2,15 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://mu1dw4mbnuf0" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://gnbsdw15bb6c" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Script" uid="uid://bykm4u41cvhha" path="res://stats.gd" id="2_qjkh3"]
+[ext_resource type="Resource" uid="uid://bnq0qbvcevm1n" path="res://player/player_stats.tres" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://dqv5gu76svhow" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://k5e8mfvmk0cg" path="res://damage_boxes/hitbox.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dq4v35ww63efl" path="res://damage_boxes/hurtbox.gd" id="5_g6k8r"]
-
-[sub_resource type="Resource" id="Resource_qjkh3"]
-script = ExtResource("2_qjkh3")
-health = 4
-metadata/_custom_type_script = "uid://bykm4u41cvhha"
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
 length = 0.001
@@ -774,7 +769,7 @@ collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
-stats = SubResource("Resource_qjkh3")
+stats = ExtResource("2_g6k8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1718708503]
 position = Vector2(0, -7)
