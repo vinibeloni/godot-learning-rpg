@@ -196,8 +196,8 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=355049236]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1407908044]
-collision_layer = 16
-collision_mask = 8
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("4_pbl8b")
 metadata/_custom_type_script = "uid://dq4v35ww63efl"
 
@@ -206,8 +206,8 @@ position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_p6wbh")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=897955520]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("6_ry5r7")
 metadata/_custom_type_script = "uid://k5e8mfvmk0cg"
 

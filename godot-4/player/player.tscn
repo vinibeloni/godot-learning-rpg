@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [18]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,6 +50,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_kb6p2"]
@@ -232,6 +244,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [55, 56, 57, 58, 59]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_tqiix"]
 resource_name = "roll_left"
@@ -248,6 +272,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [50, 51, 52, 53, 54]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_wodsf"]
@@ -266,6 +302,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [40, 41, 42, 43, 44, 40]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_32hag"]
 resource_name = "roll_up"
@@ -282,6 +330,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [45, 46, 47, 48, 49]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_rgyib"]
@@ -655,6 +715,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=2130768440 groups=["player"]]
 collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
 stats = SubResource("Resource_qjkh3")
@@ -663,6 +724,7 @@ stats = SubResource("Resource_qjkh3")
 position = Vector2(0, -7)
 texture = ExtResource("1_oul6g")
 hframes = 60
+frame = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=417737042]
 libraries/ = SubResource("AnimationLibrary_8t03j")
@@ -689,26 +751,25 @@ show_behind_parent = true
 position = Vector2(0, 4)
 texture = ExtResource("3_g1dw6")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1992867131]
-collision_layer = 8
-collision_mask = 8
-script = ExtResource("5_g6k8r")
-metadata/_custom_type_script = "uid://dq4v35ww63efl"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=552876250]
-position = Vector2(-0.5, -2)
-shape = SubResource("RectangleShape2D_boad6")
-
 [node name="Hitbox" type="Area2D" parent="." unique_id=625107559]
-collision_layer = 8
-collision_mask = 16
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("4_yw30f")
 knockback_direction = Vector2(0, 1)
 metadata/_custom_type_script = "uid://k5e8mfvmk0cg"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=1457447305]
 position = Vector2(1, 0)
-disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1992867131]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("5_g6k8r")
+metadata/_custom_type_script = "uid://dq4v35ww63efl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=552876250]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_boad6")
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1921686180]
 libraries/ = SubResource("AnimationLibrary_x7c3f")

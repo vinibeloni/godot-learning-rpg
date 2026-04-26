@@ -24,7 +24,7 @@ const FRICTION = 500
 
 func _ready() -> void:
 	stats = stats.duplicate() # Resources são compartilhados, assim como Sprites
-	hurtbox.hurt.connect(take_hit.call_deferred)
+	hurtbox.hurt.connect(_take_hit.call_deferred)
 	stats.no_health.connect(queue_free)
 
 func _physics_process(delta: float) -> void:
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			move_and_slide()
 
-func take_hit(hitbox: Hitbox):
+func _take_hit(hitbox: Hitbox):
 	stats.health -= hitbox.damage
 	velocity = hitbox.hit()
 	playback.start("HitState")
