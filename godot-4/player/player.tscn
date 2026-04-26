@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://bykm4u41cvhha"
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
 length = 0.001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -607,7 +608,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -636,7 +637,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -707,6 +708,7 @@ metadata/_custom_type_script = "uid://k5e8mfvmk0cg"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=1457447305]
 position = Vector2(1, 0)
+disabled = true
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1921686180]
 libraries/ = SubResource("AnimationLibrary_x7c3f")

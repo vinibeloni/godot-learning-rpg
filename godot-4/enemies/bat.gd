@@ -9,7 +9,8 @@
 
 class_name Bat extends CharacterBody2D
 
-const RANGE: = 120
+const MAX_RANGE: = 128
+const MIN_RANGE: = 4
 const SPEED: = 30
 const FRICTION = 500
 
@@ -56,7 +57,7 @@ func is_player_in_range() -> bool:
 	var player = get_player()
 	if player is Player:
 		var distance = global_position.distance_to(player.global_position)
-		result = distance < RANGE
+		result = distance < MAX_RANGE and distance > MIN_RANGE
 		
 	return result
 
