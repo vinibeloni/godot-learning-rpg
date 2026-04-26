@@ -10,6 +10,11 @@ var last_input_vector: = Vector2.ZERO
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
+@onready var hurtbox: Hurtbox = $Hurtbox
+@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+
+func _ready() -> void:
+	hurtbox.hurt.connect(_take_hit.call_deferred)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -44,3 +49,8 @@ func _animate():
 	animation_tree.set("parameters/StateMachine/RollState/blend_position", fixed_input)
 	animation_tree.set("parameters/StateMachine/MoveState/RunState/blend_position", fixed_input)
 	animation_tree.set("parameters/StateMachine/MoveState/StandState/blend_position", fixed_input)
+
+func _take_hit(other_hitbox: Hitbox):
+	stats.health -= other_hitbox.damage
+	blink_animation_player.play("hit")
+	

@@ -1,10 +1,11 @@
-[gd_scene load_steps=57 format=3 uid="uid://cgfx2e30q58cc"]
+[gd_scene format=3 uid="uid://cgfx2e30q58cc"]
 
 [ext_resource type="Texture2D" uid="uid://mu1dw4mbnuf0" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://gnbsdw15bb6c" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://bykm4u41cvhha" path="res://stats.gd" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dqv5gu76svhow" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://k5e8mfvmk0cg" path="res://damage_boxes/hitbox.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://dq4v35ww63efl" path="res://damage_boxes/hurtbox.gd" id="5_g6k8r"]
 
 [sub_resource type="Resource" id="Resource_qjkh3"]
 script = ExtResource("2_qjkh3")
@@ -586,24 +587,87 @@ states/StateMachine/node = SubResource("AnimationNodeStateMachine_2ieo8")
 states/StateMachine/position = Vector2(388, 98.888885)
 transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTransition_ebec5")]
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
+size = Vector2(11, 16)
+
+[sub_resource type="Animation" id="Animation_c35mf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_65viv"]
+resource_name = "hit"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7c3f"]
+_data = {
+&"RESET": SubResource("Animation_c35mf"),
+&"hit": SubResource("Animation_65viv")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=2130768440 groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
 stats = SubResource("Resource_qjkh3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1718708503]
 position = Vector2(0, -7)
 texture = ExtResource("1_oul6g")
 hframes = 60
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8t03j")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=417737042]
+libraries/ = SubResource("AnimationLibrary_8t03j")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1554523694]
 callback_mode_discrete = 1
 tree_root = SubResource("AnimationNodeStateMachine_wodsf")
 advance_expression_base_node = NodePath("..")
@@ -613,24 +677,37 @@ parameters/StateMachine/MoveState/RunState/blend_position = Vector2(0, 0)
 parameters/StateMachine/MoveState/StandState/blend_position = Vector2(0, -0.018072248)
 parameters/StateMachine/RollState/blend_position = Vector2(0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2031643913]
 process_callback = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=56129072]
 position = Vector2(0, -7)
 polygon = PackedVector2Array(0, 9, -5, 3, 0, -2, 5, 3)
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=874968564]
 show_behind_parent = true
 position = Vector2(0, 4)
 texture = ExtResource("3_g1dw6")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1992867131]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("5_g6k8r")
+metadata/_custom_type_script = "uid://dq4v35ww63efl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=552876250]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_boad6")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=625107559]
 collision_layer = 8
 collision_mask = 16
 script = ExtResource("4_yw30f")
 knockback_direction = Vector2(0, 1)
 metadata/_custom_type_script = "uid://k5e8mfvmk0cg"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=1457447305]
 position = Vector2(1, 0)
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1921686180]
+libraries/ = SubResource("AnimationLibrary_x7c3f")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bo8jiwpllghfs"]
+[gd_scene format=3 uid="uid://bo8jiwpllghfs"]
 
 [ext_resource type="Texture2D" uid="uid://cf3l5g2epld7h" path="res://enemies/bat.png" id="1_6e148"]
 [ext_resource type="Script" uid="uid://dedi7027eumw0" path="res://enemies/bat.gd" id="1_ng1ub"]
 [ext_resource type="Texture2D" uid="uid://bsjtfmegtg4rh" path="res://shadows/small_shadow.png" id="2_ng1ub"]
 [ext_resource type="Script" uid="uid://bykm4u41cvhha" path="res://stats.gd" id="2_p6wbh"]
 [ext_resource type="Script" uid="uid://dq4v35ww63efl" path="res://damage_boxes/hurtbox.gd" id="4_pbl8b"]
+[ext_resource type="Script" uid="uid://k5e8mfvmk0cg" path="res://damage_boxes/hitbox.gd" id="6_ry5r7"]
 
 [sub_resource type="Resource" id="Resource_ry5r7"]
 script = ExtResource("2_p6wbh")
@@ -161,44 +162,56 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6wbh"]
 radius = 5.0990195
 
-[node name="Bat" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_55rq4"]
+radius = 4.0
+
+[node name="Bat" type="CharacterBody2D" unique_id=1493071270]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_ng1ub")
 stats = SubResource("Resource_ry5r7")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1575490522]
 position = Vector2(1, 0)
 texture = ExtResource("1_6e148")
 offset = Vector2(0, -8)
 hframes = 5
 
-[node name="ShadowSprite" type="Sprite2D" parent="."]
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=598916429]
 texture = ExtResource("2_ng1ub")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=46614536]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_dl6vp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pbl8b")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=892276037]
+libraries/ = SubResource("AnimationLibrary_pbl8b")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1559562638]
 tree_root = SubResource("AnimationNodeBlendTree_w0m5b")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=355049236]
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1407908044]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("4_pbl8b")
 metadata/_custom_type_script = "uid://dq4v35ww63efl"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1529590070]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_p6wbh")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=897955520]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_ry5r7")
+metadata/_custom_type_script = "uid://k5e8mfvmk0cg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=23866728]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_55rq4")
+debug_color = Color(0.91288996, 0.2609315, 0.35461187, 0.41960785)
