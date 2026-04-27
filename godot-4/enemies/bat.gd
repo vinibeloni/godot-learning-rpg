@@ -9,6 +9,8 @@
 
 class_name Bat extends CharacterBody2D
 
+const HitMarker = preload("res://effects/hit_effect.tscn")
+
 const MAX_RANGE: = 128
 const MIN_RANGE: = 4
 const SPEED: = 30
@@ -21,6 +23,7 @@ const FRICTION = 500
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var center: Marker2D = $Center
 
 func _ready() -> void:
 	stats = stats.duplicate() # Resources são compartilhados, assim como Sprites
@@ -48,6 +51,11 @@ func _take_hit(hitbox: Hitbox):
 	stats.health -= hitbox.damage
 	velocity = hitbox.hit()
 	playback.start("HitState")
+	
+	var hit_effect = HitMarker.instantiate()
+	get_tree().current_scene.add_child(hit_effect)
+	hit_effect.global_position = center.global_position
+	
 
 func get_player() -> Player:
 	return get_tree().get_first_node_in_group("player")
